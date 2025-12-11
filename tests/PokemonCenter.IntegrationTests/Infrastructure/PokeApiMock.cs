@@ -28,7 +28,7 @@ namespace PokemonCenter.IntegrationTests.Infrastructure
         }
     }
 
-    public sealed class ErrorPokeApiMock : HttpMessageHandler
+    public class ErrorPokeApiMock : HttpMessageHandler
     {
         protected override Task<HttpResponseMessage> SendAsync(
             HttpRequestMessage request,
@@ -39,7 +39,7 @@ namespace PokemonCenter.IntegrationTests.Infrastructure
         }
     }
 
-    public sealed class InvalidJsonPokeApiMock : HttpMessageHandler
+    public class InvalidJsonPokeApiMock : HttpMessageHandler
     {
         protected override Task<HttpResponseMessage> SendAsync(
             HttpRequestMessage request,

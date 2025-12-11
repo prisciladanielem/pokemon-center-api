@@ -17,7 +17,7 @@ namespace PokemonCenter.IntegrationTests.Controllers
         }
 
         [Fact]
-        public async Task GetPokemon_ShouldReturnOkAndValidPagedResult()
+        public async Task GeAllPokemon_ShouldReturnOkAndValidPagedResult()
         {
             int page = 1;
             int pageSize = 5;
@@ -44,7 +44,7 @@ namespace PokemonCenter.IntegrationTests.Controllers
         }
 
         [Fact]
-        public async Task GetPokemon_WithInvalidPage_ShouldReturnBadRequest()
+        public async Task GetAllPokemon_WithInvalidPage_ShouldReturnBadRequest()
         {
             const int page = 0;
             const int pageSize = 10;
@@ -62,7 +62,7 @@ namespace PokemonCenter.IntegrationTests.Controllers
         [InlineData(0)]
         [InlineData(-5)]
         [InlineData(101)]
-        public async Task GetPokemon_WithInvalidPageSize_ShouldReturnBadRequest(int invalidPageSize)
+        public async Task GetAllPokemon_WithInvalidPageSize_ShouldReturnBadRequest(int invalidPageSize)
         {
             const int page = 1;
             var url = string.Format("/api/pokemon?page={0}&pageSize={1}", page, invalidPageSize);
@@ -76,7 +76,7 @@ namespace PokemonCenter.IntegrationTests.Controllers
         }
 
         [Fact]
-        public async Task GetPokemon_WhenExternalServiceFails_ShouldReturnServiceUnavailable()
+        public async Task GetAllPokemon_WhenExternalServiceFails_ShouldReturnServiceUnavailable()
         {
             await using var factory = PokemonCenterApiFactory.CreateWithMode(PokeApiSimulationMode.HttpError);
             using var client = factory.CreateClient();
@@ -92,7 +92,7 @@ namespace PokemonCenter.IntegrationTests.Controllers
         }
 
         [Fact]
-        public async Task GetPokemon_WhenExternalServiceReturnsInvalidJson_ShouldReturnBadGateway()
+        public async Task GeAlltPokemon_WhenExternalServiceReturnsInvalidJson_ShouldReturnBadGateway()
         {
             await using var factory = PokemonCenterApiFactory.CreateWithMode(PokeApiSimulationMode.InvalidJson);
             using var client = factory.CreateClient();

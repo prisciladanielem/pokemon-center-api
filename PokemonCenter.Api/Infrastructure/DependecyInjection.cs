@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using PokemonCenter.Api.Services;
 using PokemonCenter.Api.Services.Interfaces;
 
