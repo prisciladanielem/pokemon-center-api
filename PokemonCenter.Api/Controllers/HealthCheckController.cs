@@ -1,12 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
-namespace PokemonCenter.Api.Controllers
+namespace PokemonCenter.Api.Controllers;
+
+[ApiController]
+[Route("health")]
+public class HealthCheckController : ControllerBase
 {
-    public class HealthCheckController
-    {
-        
-    }
+    [HttpGet]
+    public IActionResult Get() => Ok(new { status = "ok" });
 }
