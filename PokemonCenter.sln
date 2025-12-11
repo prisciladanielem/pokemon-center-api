@@ -5,6 +5,12 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonCenter.Api", "PokemonCenter.Api\PokemonCenter.Api.csproj", "{4CEEEEBA-4621-4BFD-945A-3A2F3E659A01}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{09EF0E13-1674-45A9-A4C1-42E12B738E64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonCenter.UnitTests", "tests\PokemonCenter.UnitTests\PokemonCenter.UnitTests.csproj", "{55266B59-1ED1-4EB0-B01C-B1CF29DA8C80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonCenter.IntegrationTests", "tests\PokemonCenter.IntegrationTests\PokemonCenter.IntegrationTests.csproj", "{B4B5F1E3-158C-45E5-BC98-F96C4642129F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +24,17 @@ Global
 		{4CEEEEBA-4621-4BFD-945A-3A2F3E659A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CEEEEBA-4621-4BFD-945A-3A2F3E659A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CEEEEBA-4621-4BFD-945A-3A2F3E659A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55266B59-1ED1-4EB0-B01C-B1CF29DA8C80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55266B59-1ED1-4EB0-B01C-B1CF29DA8C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55266B59-1ED1-4EB0-B01C-B1CF29DA8C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55266B59-1ED1-4EB0-B01C-B1CF29DA8C80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4B5F1E3-158C-45E5-BC98-F96C4642129F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4B5F1E3-158C-45E5-BC98-F96C4642129F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4B5F1E3-158C-45E5-BC98-F96C4642129F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4B5F1E3-158C-45E5-BC98-F96C4642129F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{55266B59-1ED1-4EB0-B01C-B1CF29DA8C80} = {09EF0E13-1674-45A9-A4C1-42E12B738E64}
+		{B4B5F1E3-158C-45E5-BC98-F96C4642129F} = {09EF0E13-1674-45A9-A4C1-42E12B738E64}
 	EndGlobalSection
 EndGlobal
