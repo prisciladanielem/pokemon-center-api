@@ -10,7 +10,8 @@ public enum PokeApiSimulationMode
 {
     Success,
     HttpError,
-    InvalidJson
+    InvalidJson,
+    NotFound
 }
 
 public class PokemonCenterApiFactory : WebApplicationFactory<Program>
@@ -36,19 +37,20 @@ public class PokemonCenterApiFactory : WebApplicationFactory<Program>
         {
             HttpMessageHandler handler = _mode switch
             {
-                PokeApiSimulationMode.Success     => new PokeApiMock(),
-                PokeApiSimulationMode.HttpError   => new ErrorPokeApiMock(),
+                PokeApiSimulationMode.Success => new PokeApiMock(),
+                PokeApiSimulationMode.HttpError => new ErrorPokeApiMock(),
                 PokeApiSimulationMode.InvalidJson => new InvalidJsonPokeApiMock(),
+                PokeApiSimulationMode.NotFound => new NotFoundPokeApiHandler(),
                 _ => new PokeApiMock(),
             };
 
-            services.AddTransient<IPokemonService>(_ =>
+            services.AddTransient<IPokedexService>(_ =>
             {
                 var httpClient = new HttpClient(handler)
                 {
                     BaseAddress = new Uri("https://pokeapi.co/api/v2/")
                 };
-                return new PokemonService(httpClient);
+                return new PokedexService(httpClient);
             });
         });
     }

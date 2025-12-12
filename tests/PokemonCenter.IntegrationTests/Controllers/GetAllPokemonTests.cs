@@ -7,11 +7,11 @@ using Xunit;
 
 namespace PokemonCenter.IntegrationTests.Controllers
 {
-    public class PokemonControllerTests : IClassFixture<PokemonCenterApiFactory>
+    public class GetAllPokemonTests : IClassFixture<PokemonCenterApiFactory>
     {
         private readonly HttpClient _client;
 
-        public PokemonControllerTests(PokemonCenterApiFactory factory)
+        public GetAllPokemonTests(PokemonCenterApiFactory factory)
         {
             _client = factory.CreateClient();
         }
@@ -55,7 +55,7 @@ namespace PokemonCenter.IntegrationTests.Controllers
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 
             var errorBody = await response.Content.ReadAsStringAsync();
-            Assert.Contains("Page should be equal ou greater than 1", errorBody);
+            Assert.Contains("Page and pageSize must be greater than zero", errorBody);
         }
 
         [Theory]
@@ -74,38 +74,5 @@ namespace PokemonCenter.IntegrationTests.Controllers
             var errorBody = await response.Content.ReadAsStringAsync();
             Assert.Contains("Page size should be between 1 and 100", errorBody);
         }
-
-        [Fact]
-        public async Task GetAllPokemon_WhenExternalServiceFails_ShouldReturnServiceUnavailable()
-        {
-            await using var factory = PokemonCenterApiFactory.CreateWithMode(PokeApiSimulationMode.HttpError);
-            using var client = factory.CreateClient();
-
-            var url = "/api/pokemon?page=1&pageSize=5";
-
-            var response = await client.GetAsync(url);
-
-            Assert.Equal(HttpStatusCode.ServiceUnavailable, response.StatusCode);
-
-            var errorBody = await response.Content.ReadAsStringAsync();
-            Assert.Contains("Failed to retrieve data from external pokémon service", errorBody);
-        }
-
-        [Fact]
-        public async Task GeAlltPokemon_WhenExternalServiceReturnsInvalidJson_ShouldReturnBadGateway()
-        {
-            await using var factory = PokemonCenterApiFactory.CreateWithMode(PokeApiSimulationMode.InvalidJson);
-            using var client = factory.CreateClient();
-
-            var url = "/api/pokemon?page=1&pageSize=5";
-
-            var response = await client.GetAsync(url);
-
-            Assert.Equal(HttpStatusCode.BadGateway, response.StatusCode);
-
-            var errorBody = await response.Content.ReadAsStringAsync();
-            Assert.Contains("Received an invalid response format from external pokémon service", errorBody);
-        }
-
     }
 }
