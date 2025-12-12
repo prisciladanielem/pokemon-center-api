@@ -7,7 +7,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddHttpClient<IPokemonService, PokemonService>(client =>
+        services.AddHttpClient<IPokedexService, PokedexService>(client =>
         {
             client.BaseAddress = new Uri("https://pokeapi.co/api/v2/");
         });
