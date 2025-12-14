@@ -1,0 +1,262 @@
+using PokemonCenter.Api.Services.Battle;
+using PokemonCenter.Api.Services.Battle.Models;
+using Xunit;
+
+namespace PokemonCenter.UnitTests.Services.Battle
+{
+    public class BattleServiceTests
+    {
+        [Fact]
+        public void Simulate_FirstTurn_CalculatesDamageUsingAttackAndDefense()
+        {
+            var service = new BattleService();
+
+            var pikachu = new BattlePokemon
+            {
+                Name = "Pikachu",
+                Hp = 35,
+                Attack = 10,
+                Defense = 0,
+                Speed = 10
+            };
+
+            var bulbasaur = new BattlePokemon
+            {
+                Name = "Bulbasaur",
+                Hp = 35,
+                Attack = 1,
+                Defense = 6,
+                Speed = 5
+            };
+
+            var result = service.Simulate(pikachu, bulbasaur);
+
+            var firstTurn = result.Turns[0];
+
+            Assert.Equal(1, firstTurn.Turn);
+            Assert.Equal("Pikachu", firstTurn.Attacker);
+            Assert.Equal("Bulbasaur", firstTurn.Defender);
+
+            Assert.Equal(4, firstTurn.Damage);
+            Assert.Equal(35, firstTurn.DefenderHpBefore);
+            Assert.Equal(31, firstTurn.DefenderHpAfter);
+        }
+
+        [Fact]
+        public void Simulate_DamageIsAtLeastOne_WhenAttackIsNotGreaterThanDefense()
+        {
+            var service = new BattleService();
+
+            var a = new BattlePokemon
+            {
+                Name = "Pikachu",
+                Hp = 10,
+                Attack = 5,
+                Defense = 0,
+                Speed = 10
+            };
+
+            var b = new BattlePokemon
+            {
+                Name = "Bulbasaur",
+                Hp = 10,
+                Attack = 1,
+                Defense = 999,
+                Speed = 1
+            };
+
+            var result = service.Simulate(a, b);
+
+            var firstTurn = result.Turns[0];
+            Assert.Equal(1, firstTurn.Damage);
+            Assert.Equal(10, firstTurn.DefenderHpBefore);
+            Assert.Equal(9, firstTurn.DefenderHpAfter);
+        }
+
+        [Fact]
+        public void Simulate_FasterPokemon_AttacksFirst()
+        {
+            var service = new BattleService();
+
+            var slow = new BattlePokemon
+            {
+                Name = "Slow",
+                Hp = 10,
+                Attack = 2,
+                Defense = 0,
+                Speed = 1
+            };
+
+            var fast = new BattlePokemon
+            {
+                Name = "Fast",
+                Hp = 10,
+                Attack = 2,
+                Defense = 0,
+                Speed = 99
+            };
+
+            var result = service.Simulate(slow, fast);
+
+            Assert.Equal("Fast", result.Turns[0].Attacker);
+            Assert.Equal("Slow", result.Turns[0].Defender);
+        }
+
+        [Fact]
+        public void Simulate_SpeedTie_FirstPokemonAttacksFirst()
+        {
+            var service = new BattleService();
+
+            var first = new BattlePokemon
+            {
+                Name = "First",
+                Hp = 10,
+                Attack = 2,
+                Defense = 0,
+                Speed = 10
+            };
+
+            var second = new BattlePokemon
+            {
+                Name = "Second",
+                Hp = 10,
+                Attack = 2,
+                Defense = 0,
+                Speed = 10
+            };
+
+            var result = service.Simulate(first, second);
+
+            Assert.Equal("First", result.Turns[0].Attacker);
+            Assert.Equal("Second", result.Turns[0].Defender);
+        }
+
+        [Fact]
+        public void Simulate_BattleEnds_WhenPokemonHpReachesZero()
+        {
+            var service = new BattleService();
+
+            var attacker = new BattlePokemon
+            {
+                Name = "Pikachu",
+                Hp = 10,
+                Attack = 999,
+                Defense = 0,
+                Speed = 50
+            };
+
+            var defender = new BattlePokemon
+            {
+                Name = "Bulbasaur",
+                Hp = 10,
+                Attack = 1,
+                Defense = 0,
+                Speed = 1
+            };
+
+            var result = service.Simulate(attacker, defender);
+
+            Assert.Single(result.Turns);
+            Assert.Equal(1, result.TotalTurns);
+
+            Assert.Equal("Pikachu", result.Winner);
+            Assert.Equal("Bulbasaur", result.Loser);
+
+            Assert.True(result.WinnerHp > 0);
+            Assert.False(result.LoserHp > 0);
+
+        }
+
+        [Fact]
+        public void Simulate_BattleNeverEndsInATie_WithMinimumDamage()
+        {
+            var service = new BattleService();
+
+            var first = new BattlePokemon
+            {
+                Name = "Pokemon1",
+                Hp = 5,
+                Attack = 1,
+                Defense = 999,
+                Speed = 10
+            };
+
+            var second = new BattlePokemon
+            {
+                Name = "Pokemon2",
+                Hp = 5,
+                Attack = 1,
+                Defense = 999,
+                Speed = 10
+            };
+
+            var result = service.Simulate(first, second);
+
+            Assert.NotEqual(result.Winner, result.Loser);
+            Assert.Equal("Pokemon1", result.Winner);
+            Assert.Equal("Pokemon2", result.Loser);
+
+            Assert.True(result.WinnerHp > 0);
+            Assert.True(result.LoserHp <= 0);
+        }
+
+        [Fact]
+        public void Simulate_MultiTurn_BattleAlternatesTurns_AndLogsAreCorrect()
+        {
+            var service = new BattleService();
+
+            var a = new BattlePokemon
+            {
+                Name = "PokemonA",
+                Hp = 5,
+                Attack = 5,
+                Defense = 0,
+                Speed = 10
+            };
+
+            var b = new BattlePokemon
+            {
+                Name = "PokemonB",
+                Hp = 2,
+                Attack = 4,
+                Defense = 4,
+                Speed = 1
+            };
+
+            var result = service.Simulate(a, b);
+
+            Assert.Equal(3, result.TotalTurns);
+            Assert.Equal(3, result.Turns.Count);
+
+            //firt turn
+            Assert.Equal(1, result.Turns[0].Turn);
+            Assert.Equal("PokemonA", result.Turns[0].Attacker);
+            Assert.Equal("PokemonB", result.Turns[0].Defender);
+            Assert.Equal(1, result.Turns[0].Damage);
+            Assert.Equal(2, result.Turns[0].DefenderHpBefore);
+            Assert.Equal(1, result.Turns[0].DefenderHpAfter);
+
+            // second turn
+            Assert.Equal(2, result.Turns[1].Turn);
+            Assert.Equal("PokemonB", result.Turns[1].Attacker);
+            Assert.Equal("PokemonA", result.Turns[1].Defender);
+            Assert.Equal(4, result.Turns[1].Damage);
+            Assert.Equal(5, result.Turns[1].DefenderHpBefore);
+            Assert.Equal(1, result.Turns[1].DefenderHpAfter);
+
+            // third turn
+            Assert.Equal(3, result.Turns[2].Turn);
+            Assert.Equal("PokemonA", result.Turns[2].Attacker);
+            Assert.Equal("PokemonB", result.Turns[2].Defender);
+            Assert.Equal(1, result.Turns[2].Damage);
+            Assert.Equal(1, result.Turns[2].DefenderHpBefore);
+            Assert.Equal(0, result.Turns[2].DefenderHpAfter);
+
+            // final result
+            Assert.Equal("PokemonA", result.Winner);
+            Assert.Equal("PokemonB", result.Loser);
+            Assert.True(result.WinnerHp > 0);
+            Assert.True(result.LoserHp <= 0);
+        }
+    }
+}
