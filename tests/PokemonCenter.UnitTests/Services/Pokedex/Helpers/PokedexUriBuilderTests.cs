@@ -1,8 +1,8 @@
 using PokemonCenter.Api.Dtos.common;
-using PokemonCenter.Api.Services.Helpers;
+using PokemonCenter.Api.Services.Pokedex.Helpers;
 using Xunit;
 
-namespace PokemonCenter.UnitTests.Services.Helpers
+namespace PokemonCenter.UnitTests.Services.Pokedex.Helpers
 {
     public class PokedexUriBuilderTests
     {

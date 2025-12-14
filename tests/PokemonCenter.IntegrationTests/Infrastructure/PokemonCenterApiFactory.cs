@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
-using PokemonCenter.Api.Services;
-using PokemonCenter.Api.Services.Interfaces;
+using PokemonCenter.Api.Services.Pokedex;
+using PokemonCenter.Api.Services.Pokedex.Interfaces;
 
 namespace PokemonCenter.IntegrationTests.Infrastructure;
 

@@ -2,7 +2,7 @@ using PokemonCenter.Api.Dtos.pokemon;
 using PokemonCenter.Api.Dtos.Pokemon;
 using PokemonCenter.Api.Infrastructure.External.PokeApi;
 
-namespace PokemonCenter.Api.Services.Mappers
+namespace PokemonCenter.Api.Services.Pokedex.Mappers
 {
     public static class PokemonDetailsMapper
     {

@@ -1,10 +1,10 @@
 using PokemonCenter.Api.Dtos;
 using PokemonCenter.Api.Dtos.common;
 using PokemonCenter.Api.Infrastructure.External.PokeApi;
-using PokemonCenter.Api.Services.Mappers;
+using PokemonCenter.Api.Services.Pokedex.Mappers;
 using Xunit;
 
-namespace PokemonCenter.UnitTests.Services.Mappers
+namespace PokemonCenter.UnitTests.Services.Pokedex.Mappers
 {
     public class PokemonListMapperTests
     {
