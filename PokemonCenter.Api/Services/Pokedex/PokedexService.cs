@@ -2,12 +2,12 @@ using PokemonCenter.Api.Dtos;
 using PokemonCenter.Api.Dtos.common;
 using PokemonCenter.Api.Dtos.Pokemon;
 using PokemonCenter.Api.Infrastructure.External.PokeApi;
-using PokemonCenter.Api.Services.Helpers;
-using PokemonCenter.Api.Services.Interfaces;
-using PokemonCenter.Api.Services.Mappers;
+using PokemonCenter.Api.Services.Pokedex.Helpers;
+using PokemonCenter.Api.Services.Pokedex.Interfaces;
+using PokemonCenter.Api.Services.Pokedex.Mappers;
 using System.Net;
 
-namespace PokemonCenter.Api.Services
+namespace PokemonCenter.Api.Services.Pokedex
 {
     public class PokedexService : IPokedexService
     {

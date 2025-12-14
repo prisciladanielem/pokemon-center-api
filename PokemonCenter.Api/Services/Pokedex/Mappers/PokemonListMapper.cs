@@ -1,9 +1,9 @@
 using PokemonCenter.Api.Dtos;
 using PokemonCenter.Api.Dtos.common;
 using PokemonCenter.Api.Infrastructure.External.PokeApi;
-using PokemonCenter.Api.Services.Helpers;
+using PokemonCenter.Api.Services.Pokedex.Helpers;
 
-namespace PokemonCenter.Api.Services.Mappers
+namespace PokemonCenter.Api.Services.Pokedex.Mappers
 {
     public static class PokemonListMapper
     {

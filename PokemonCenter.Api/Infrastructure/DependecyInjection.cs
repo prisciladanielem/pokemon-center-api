@@ -1,5 +1,5 @@
-using PokemonCenter.Api.Services;
-using PokemonCenter.Api.Services.Interfaces;
+using PokemonCenter.Api.Services.Pokedex;
+using PokemonCenter.Api.Services.Pokedex.Interfaces;
 
 namespace PokemonCenter.Api.Infrastructure;
 

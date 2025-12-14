@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PokemonCenter.Api.Dtos;
 using PokemonCenter.Api.Dtos.common;
-using PokemonCenter.Api.Services.Interfaces;
+using PokemonCenter.Api.Services.Pokedex.Interfaces;
 using System.Text.Json;
 
 namespace PokemonCenter.Api.Controllers

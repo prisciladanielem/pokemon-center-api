@@ -1,6 +1,6 @@
 using PokemonCenter.Api.Dtos.common;
 
-namespace PokemonCenter.Api.Services.Helpers
+namespace PokemonCenter.Api.Services.Pokedex.Helpers
 {
     public static class PokedexUriBuilder
     {
