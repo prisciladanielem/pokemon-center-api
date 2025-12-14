@@ -1,6 +1,3 @@
-using System.Net;
-using System.Text;
-
 namespace PokemonCenter.IntegrationTests.Infrastructure
 {
 
@@ -73,40 +70,40 @@ namespace PokemonCenter.IntegrationTests.Infrastructure
         }";
 
         private const string PikachuJson = @"
-{
-  ""id"": 25,
-  ""name"": ""pikachu"",
-  ""height"": 4,
-  ""weight"": 60,
-  ""types"": [
-    { ""slot"": 1, ""type"": { ""name"": ""electric"", ""url"": ""https://pokeapi.co/api/v2/type/13/"" } }
-  ],
-  ""abilities"": [
-    { ""is_hidden"": false, ""slot"": 1, ""ability"": { ""name"": ""static"", ""url"": ""https://pokeapi.co/api/v2/ability/9/"" } }
-  ],
-  ""stats"": [
-    { ""base_stat"": 35, ""effort"": 0, ""stat"": { ""name"": ""hp"", ""url"": ""https://pokeapi.co/api/v2/stat/1/"" } },
-    { ""base_stat"": 55, ""effort"": 0, ""stat"": { ""name"": ""attack"", ""url"": ""https://pokeapi.co/api/v2/stat/2/"" } },
-    { ""base_stat"": 40, ""effort"": 0, ""stat"": { ""name"": ""defense"", ""url"": ""https://pokeapi.co/api/v2/stat/3/"" } },
-    { ""base_stat"": 90, ""effort"": 0, ""stat"": { ""name"": ""speed"", ""url"": ""https://pokeapi.co/api/v2/stat/6/"" } }
-  ],
-  ""sprites"": {
-    ""front_default"": ""front.png"",
-    ""back_default"": ""back.png"",
-    ""front_shiny"": ""front_shiny.png"",
-    ""back_shiny"": ""back_shiny.png"",
-    ""other"": { ""official-artwork"": { ""front_default"": ""art.png"" } }
-  }
-}";
+            {
+            ""id"": 25,
+            ""name"": ""pikachu"",
+            ""height"": 4,
+            ""weight"": 60,
+            ""types"": [
+                { ""slot"": 1, ""type"": { ""name"": ""electric"", ""url"": ""https://pokeapi.co/api/v2/type/13/"" } }
+            ],
+            ""abilities"": [
+                { ""is_hidden"": false, ""slot"": 1, ""ability"": { ""name"": ""static"", ""url"": ""https://pokeapi.co/api/v2/ability/9/"" } }
+            ],
+            ""stats"": [
+                { ""base_stat"": 35, ""effort"": 0, ""stat"": { ""name"": ""hp"", ""url"": ""https://pokeapi.co/api/v2/stat/1/"" } },
+                { ""base_stat"": 55, ""effort"": 0, ""stat"": { ""name"": ""attack"", ""url"": ""https://pokeapi.co/api/v2/stat/2/"" } },
+                { ""base_stat"": 40, ""effort"": 0, ""stat"": { ""name"": ""defense"", ""url"": ""https://pokeapi.co/api/v2/stat/3/"" } },
+                { ""base_stat"": 90, ""effort"": 0, ""stat"": { ""name"": ""speed"", ""url"": ""https://pokeapi.co/api/v2/stat/6/"" } }
+            ],
+            ""sprites"": {
+                ""front_default"": ""front.png"",
+                ""back_default"": ""back.png"",
+                ""front_shiny"": ""front_shiny.png"",
+                ""back_shiny"": ""back_shiny.png"",
+                ""other"": { ""official-artwork"": { ""front_default"": ""art.png"" } }
+            }
+            }";
 
         private const string ListJson = @"
-{
-  ""count"": 1302,
-  ""results"": [
-    { ""name"": ""bulbasaur"", ""url"": ""https://pokeapi.co/api/v2/pokemon/1/"" },
-    { ""name"": ""pikachu"",   ""url"": ""https://pokeapi.co/api/v2/pokemon/25/"" }
-  ]
-}";
+            {
+            ""count"": 1302,
+            ""results"": [
+                { ""name"": ""bulbasaur"", ""url"": ""https://pokeapi.co/api/v2/pokemon/1/"" },
+                { ""name"": ""pikachu"",   ""url"": ""https://pokeapi.co/api/v2/pokemon/25/"" }
+            ]
+            }";
     }
 
 
