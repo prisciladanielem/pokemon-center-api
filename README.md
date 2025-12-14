@@ -6,6 +6,8 @@ It provides Pokémon data (listing and details) and supports turn-based battle s
 
 The project follows a layered architecture and is implemented in small, review-friendly milestones.
 
+[Pokémon Center API Technical Assessment](https://docs.google.com/document/d/1y01YcWOn1Y3gXJyRrh1lChvf924p0bckHfa0i2SGg94/edit?usp=sharing)
+
 ---
 
 ## Endpoints Overview
