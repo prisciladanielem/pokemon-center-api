@@ -1,3 +1,5 @@
+using PokemonCenter.Api.Services.Battle;
+using PokemonCenter.Api.Services.Battle.Interfaces;
 using PokemonCenter.Api.Services.Pokedex;
 using PokemonCenter.Api.Services.Pokedex.Interfaces;
 
@@ -11,6 +13,9 @@ public static class DependencyInjection
         {
             client.BaseAddress = new Uri("https://pokeapi.co/api/v2/");
         });
+
+        services.AddScoped<IBattleService, BattleService>();
+        services.AddScoped<IBattleSimulationService, BattleSimulationService>();
 
         return services;
     }

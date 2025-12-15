@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using PokemonCenter.Api.Services.Pokedex;
 using PokemonCenter.Api.Services.Pokedex.Interfaces;
 
@@ -35,6 +36,8 @@ public class PokemonCenterApiFactory : WebApplicationFactory<Program>
     {
         builder.ConfigureServices(services =>
         {
+            services.RemoveAll<IPokedexService>();
+            
             HttpMessageHandler handler = _mode switch
             {
                 PokeApiSimulationMode.Success => new PokeApiMock(),
